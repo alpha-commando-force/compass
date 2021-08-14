@@ -35,7 +35,7 @@ func Test_createDirIfNotExist(t *testing.T) {
 
 				s, err := os.Stat("./foobar")
 				if err != nil {
-					t.Error("vierfy resutlt error", err)
+					t.Error("verify resutlt error", err)
 					return
 				}
 
