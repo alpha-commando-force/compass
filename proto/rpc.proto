@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package proto;
+
+import "node.proto";
+
+// Guide Service do client to server rpc method.
+service Guide {
+    // Put puts key-value node with only key.
+    rpc Put (PutRequest) returns (PutResponse);
+
+    // Get get service nodes by serviceName.
+    rpc Get (GetRequest) returns (GetResponse);
+}
+
+message PutRequest {
+    // service basic info.
+    string serviceName = 1;
+    string address = 2;
+    int32 port = 3;
+    double weight = 4;
+    // metadata store user extension info.
+    bytes metadata = 5;
+}
+
+message PutResponse{
+    int32 code = 1;
+    // serviceNode before modification. 
+    ServiceNode preNode = 2;
+}
+
+message GetRequest {
+    string serviceName = 1;
+    int32 limit = 2;
+}
+
+message GetResponse {
+    int32 code = 1;
+    repeated ServiceNode nodes = 2;
+    int32 count = 3;
+}
